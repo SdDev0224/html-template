@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pro Report-V01</title>
+  <style>
+    body {
+      font-family: "Inter", 'Roboto', sans-serif;
+      margin: 10mm;
+      padding: 0;
+      font-size: 12px;
+    }
+
+    .page-body {
+      width: 513px;
+    }
+
+    h3.title {
+      color: #1256A0;
+      font-weight: 700;
+      line-height: 14.52px;
+      padding-left: 3px;
+    }
+
+    /* header start */
+    .header {
+      min-height: 51px;
+    }
+
+    .header-top,
+    .report-title {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .header-top>.title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24.2px;
+      color: #181C21;
+    }
+
+    .title>.sub-thin {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14.52px;
+    }
+
+    .header-top>.logo>img {
+      width: 90.46px;
+    }
+
+    .header-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0 13px 0
+    }
+
+    .report-title {
+      width: 76px;
+    }
+
+    .header-bottom>.date {
+      width: 110px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .date>.text {
+      padding-top: 0.8px;
+      font-size: 10px;
+      letter-spacing: 0.2px;
+      color: #58616E;
+    }
+
+    .header-bottom-line {
+      width: 513px;
+      height: 2px;
+      background: linear-gradient(85.58deg, #FAC761 8%, #F7681C 114.4%);
+    }
+
+    /* header end */
+
+    /* table */
+    table {
+      font-size: 8px;
+      line-height: 10px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      border-collapse: collapse;
+    }
+
+    /* metrics start */
+    .metrics h3.title {
+      padding: 8px 0 5px 3px;
+    }
+
+    .table-metrics th {
+      border-bottom: 1px solid var(--grey-20, #E6E9EB);
+    }
+
+    .table-metrics thead tr th {
+      width: 64.13px;
+      padding: 4px 4px 8px 4px;
+    }
+
+    .table-metrics tbody tr td {
+      width: 64.13px;
+      padding: 5px 4px 4px 4px
+    }
+
+    /* metrics end */
+
+    /* section indicators start */
+    .indicators {
+      padding-top: 5px;
+    }
+
+    .indicators>.title {
+      margin: 15px 0 10px 0
+    }
+
+    .indicators>.body {
+      width: 510px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .table-indicators {
+      width: 206px;
+      min-height: 118px;
+      font-size: 8px;
+      line-height: 10px;
+      letter-spacing: 0.2px;
+      text-align: left;
+    }
+
+    .table-indicators .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 3.2px 1px;
+    }
+
+    .table-indicators .row hr {
+      border: 1px solid var(--grey-10, #F7F7F8)
+    }
+
+    .table-indicators .row:first-child hr {
+      width: 70px;
+    } 
+    .table-indicators .row:nth-child(2) hr {
+      width: 73px;
+    }
+    .table-indicators .row:nth-child(3) hr {
+      width: 100px;
+    }
+    .table-indicators .row:nth-child(4) hr {
+      width: 114px;
+    }
+    .table-indicators .row:nth-child(5) hr {
+      width: 108px;
+    }
+    .table-indicators .row:nth-child(6) hr {
+      width: 105px;
+    }
+    .table-indicators .row:nth-child(7) hr {
+      width: 83px;
+    }
+
+    .table-indicators .row div:last-child {
+      text-align: right
+    }
+
+    .table-indicators .row div:first-child {
+      font-weight: 700;
+    }
+
+    .price-chart {
+      min-width: 288px;
+    }
+
+    .price-chart .title {
+      padding-top: 3px;
+    }
+
+    .price-chart .title p {
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 10.89px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      color: var(--grey-900, #181C21);
+      margin: 0;
+    }
+
+    .price-chart .chart {
+      height: 95px;
+      padding-top: 10px;
+    }
+
+    .chart-body {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chart-body .lines {
+      width: 258px;
+      height: 76px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chart-body .chart-left {
+      display: flex;
+    }
+
+    .lines .line {
+      width: 258px;
+      border: 1px dotted var(--grey-20, #E6E9EB);
+    }
+
+    .chart-curve {
+      position: absolute;
+      margin-top: 10px;
+    }
+
+    .lines .line:last-child {
+      border: 1px solid var(--grey-50, #D9DCDF)
+    }
+
+    .vertical-line {
+      border: 1px solid var(--grey-50, #D9DCDF)
+    }
+
+    .chart-body .bottom-lines {
+      width: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chart-body .bottom-lines .line {
+      border: 1px solid var(--grey-50, #D9DCDF)
+    }
+
+    .chart .amount {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 21px;
+      font-size: 6px;
+      line-height: 8px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      color: var(--grey-500, #848892);
+    }
+
+    .chart-month {
+      width: 259px;
+    }
+
+    .chart-month .bottom-lines {
+      padding: 0 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chart-month .bottom-lines .line {
+      height: 4px;
+      border: 1px solid var(--grey-50, #D9DCDF)
+    }
+
+    .months {
+      display: flex;
+      justify-content: space-between;
+      min-height: 12px;
+      padding: 2px 0px 0px 0px;
+    }
+
+    .months div {
+      height: 8px;
+      font-size: 6px;
+      font-weight: 400;
+      line-height: 8px;
+      letter-spacing: 0.2px;
+      text-align: center;
+      color: var(--grey-500, #848892);
+    }
+
+    /* section indicators end */
+
+    /* section ratings start */
+    .ratings>.title {
+      min-height: 15px;
+      margin: 12px 0 11px 0;
+    }
+
+    .ratings .body {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .latest-targets-table {
+      width: 206px;
+    }
+
+    .latest-targets-table .table-header,
+    .current-ratings .header-title,
+    .analyst-table .table-header {
+      font-size: 9px;
+      font-weight: 700;
+      line-height: 10.89px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      padding-bottom: 10px;
+      color: var(--grey-900, #181C21);
+    }
+
+    .latest-targets-table tbody th {
+      border-bottom: 1px solid var(--grey-20, #E6E9EB);
+      padding: 2px 4px 4px 4px;
+    }
+
+    .latest-targets-table tbody tr td {
+      border-bottom: 1px solid var(--grey-10, #F7F7F8);
+      padding: 4.5px 4px;
+    }
+
+    .latest-targets-table tbody tr th:first-child,
+    .latest-targets-table tbody tr td:first-child {
+      width: 50px;
+    }
+
+    .latest-targets-table tbody tr th:nth-child(2),
+    .latest-targets-table tbody tr th:last-child,
+    .latest-targets-table tbody tr td:nth-child(2),
+    .latest-targets-table tbody tr td:last-child {
+      width: 49px;
+    }
+
+    .latest-targets-table tbody tr th:nth-child(3),
+    .latest-targets-table tbody tr td:nth-child(3) {
+      width: 58px;
+    }
+
+    .latest-targets-table tbody tr th:last-child,
+    .latest-targets-table tbody tr td:last-child,
+    .analyst-table tbody tr th:last-child,
+    .analyst-table tbody tr td:last-child {
+      text-align: right;
+    }
+
+    .body-right {
+      width: 291px;
+    }
+
+    .current-ratings {
+      min-height: 45px;
+      margin-bottom: 5px;
+    }
+
+    .current-ratings .header-title {
+      padding-left: 2.5px;
+    }
+
+    .current-ratings .ratings-body {
+      display: flex;
+      text-align: center;
+      font-size: 10px;
+      line-height: 12px;
+    }
+
+    .high {
+      background: var(--grey-10, #F7F7F8);
+      color: var(--brand-green, #007C32);
+      padding: 6px 12px;
+      margin-right: 5px;
+    }
+
+    .median {
+      background: var(--grey-10, #F7F7F8);
+      color: var(--grey-700, #5B616E);
+      padding: 6px 12px;
+      margin-right: 5px;
+    }
+
+    .low {
+      background: var(--grey-10, #F7F7F8);
+      color: var(--brand-red, #D91400);
+      padding: 6px 12px;
+    }
+
+    .analyst-table {
+      margin-top: 10px;
+    }
+
+    .analyst-table tbody tr {
+      min-height: 19px;
+      padding: 4px 0px 4px 0px;
+      border-bottom: 1px solid var(--grey-20, #E6E9EB)
+    }
+
+    .analyst-table tbody tr:first-child {
+      min-height: 39px;
+    }
+
+    .analyst-table .table-header {
+      padding: 6px 0 15px 0;
+    }
+
+    .analyst-table tbody th,
+    .analyst-table tbody td {
+      width: 41.57px;
+      color: var(--grey-900, #181C21);
+      font-size: 8px;
+      line-height: 10px;
+      letter-spacing: 0.2px;
+      text-align: left;
+    }
+
+    .analyst-table tbody th {
+      border-bottom: 1px solid var(--grey-20, #E6E9EB);
+      padding: 2px 4px 7px 4px;
+    }
+
+    .analyst-table tbody tr td {
+      border-bottom: 1px solid var(--grey-10, #F7F7F8);
+      padding: 4.5px 4px;
+    }
+
+    /* section ratings end */
+
+    /* second page start */
+    .second-page {
+      margin-top: 150px
+    }
+
+    .swot-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .swot-top .strength,
+    .swot-top .weakness,
+    .swot-bottom .opportunity,
+    .swot-bottom .threat {
+      width: 248.5px;
+    }
+
+    .swot .content {
+      border-radius: 2px;
+      font-size: 8px;
+      line-height: 10px;
+      color: var(--grey-900, #181C21);
+      padding: 12px 25px;
+    }
+
+    .swot .content li {
+      padding: 3px 0;
+    }
+
+    .swot .swot-name {
+      position: absolute;
+      font-weight: 700;
+      font-size: 10px;
+      background-color: white;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .strength .swot-name {
+      color: #007C32;
+      padding: 0 8px;
+      margin-left: 173px;
+    }
+
+    .strength .content {
+      background-color: var(--brand-green, #f3f7f4);
+      border: 1px solid var(--brand-green, #007C32)
+    }
+
+    .weakness .content {
+      background-color: var(--brand-green, #f3f3f3);
+      border: 1px solid var(--grey-700, #5B616E)
+    }
+
+    .weakness .swot-name {
+      color: #5B616E;
+      padding: 0 8px;
+      margin-left: 10px;
+    }
+
+    .swot-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .opportunity .content {
+      background-color: var(--brand-green, #f2f5fa);
+      border: 1px solid var(--color-ui-light-blue, #006BF6)
+    }
+
+    .opportunity .swot-name {
+      color: #006BF6;
+      margin-left: 153px;
+      padding: 0 6px;
+    }
+
+    .threat .content {
+      background-color: var(--brand-green, #fff7f6);
+      border: 1px solid var(--brand-red, #D91400)
+    }
+
+    .threat .swot-name {
+      color: #D91400;
+      padding: 0 8px;
+      margin-left: 10px;
+    }
+
+    .news-block {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .block-left,
+    .block-right {
+      width: 248.5px;
+    }
+
+    .news .news-header {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 14px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      color: var(--grey-900, #181C21);
+    }
+
+    .news .news-date {
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 10px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      color: var(--grey-700, #5B616E);
+      padding: 5px 0
+    }
+
+    .news .news-content {
+      font-size: 8px;
+      font-weight: 400;
+      line-height: 10px;
+      letter-spacing: 0.2px;
+      text-align: left;
+      color: var(--grey-900, #181C21);
+    }
+
+    /* second page end */
+
+    .page-number {
+      letter-spacing: 0.2px;
+      width: 510px;
+      margin-top: 40px;
+      font-weight: 400;
+      font-size: 10px;
+      line-height: 14px;
+      text-align: right;
+      color: #848892;
+    }
+
+    .page-number>.number {
+      font-size: 12px;
+      color: #181c21
+    }
+  </style>
+</head>
+
+<body>
+  <div class="first-page">
+    <div class="page-body">
+      <div class="header">
+        <div class="header-top">
+          <div class="title">
+            Apple Inc.
+            <span class="sub-thin">NasdaqGS</span>
+          </div>
+          <div class="logo">
+            <img src="https://i.ibb.co/TH9twx7/inv-logo-proreport.png" alt="Investing.com Logo">
+          </div>
+        </div>
+        <div class="header-bottom">
+          <div class="report-title">
+            <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M4.94348 0.5C4.49825 0.5 3.75486 0.666557 3.05445 0.851175C2.42972 1.01826 1.80905 1.20003 1.19295 1.39633C1.01705 1.45151 0.86044 1.55518 0.74124 1.69534C0.622039 1.8355 0.545124 2.00642 0.519397 2.18832C0.134607 4.99571 1.02641 7.076 2.10959 8.45261C2.27757 8.66793 2.457 8.87367 2.64702 9.06899V2.79039H4.99732C5.33308 2.79039 5.65567 2.82301 5.96509 2.88826C6.2811 2.9535 6.5576 3.06442 6.79461 3.22102C7.03161 3.37109 7.21924 3.57661 7.3575 3.8376C7.50233 4.09207 7.57475 4.41178 7.57475 4.79673C7.57475 5.23389 7.49904 5.58622 7.34762 5.85374C7.1962 6.12125 6.99211 6.33004 6.73536 6.48011C6.4786 6.62365 6.17905 6.72152 5.83671 6.77372C5.50096 6.82592 5.14874 6.85202 4.78007 6.85202H3.8913V10.0971C4.0575 10.2032 4.23039 10.2988 4.40893 10.3831C4.59025 10.466 4.78365 10.5336 4.94348 10.5336C5.1033 10.5336 5.2967 10.466 5.47802 10.3831C5.71406 10.2715 5.94027 10.1404 6.15426 9.99109C6.76967 9.56199 7.31701 9.04339 7.77803 8.45261C8.85987 7.076 9.75235 4.99571 9.36755 2.18832C9.31585 1.81306 9.04858 1.50871 8.694 1.39633C8.07791 1.20002 7.45723 1.01825 6.83251 0.851175C6.13209 0.666557 5.38803 0.5 4.94348 0.5ZM5.19483 5.77544C5.00391 5.78849 4.81957 5.79501 4.64181 5.79501H3.8913V3.84739H4.78007C4.94465 3.84739 5.11582 3.85718 5.29358 3.87675C5.47133 3.89632 5.63263 3.942 5.77746 4.01377C5.9223 4.07902 6.0408 4.17689 6.13297 4.30738C6.22514 4.43135 6.27122 4.60099 6.27122 4.81631C6.27122 5.0512 6.21856 5.23389 6.11322 5.36438C6.01447 5.49488 5.8828 5.59275 5.71821 5.658C5.56021 5.72324 5.38575 5.76239 5.19483 5.77544Z"
+                fill="#FF7901" />
+            </svg>
+            <div class="text">Pro Report</div>
+          </div>
+          <div class="date">
+            <div class="clock">
+              <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="5.57146" cy="6.0714" r="4.28571" stroke="#5B616E" stroke-width="0.857143"
+                  stroke-linecap="round" />
+                <path d="M5.57141 3.92859V6.07145H7.71427" stroke="#5B616E" stroke-width="0.857143" />
+              </svg>
+            </div>
+            <div class="text">Date: Jun 06, 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom-line"></div>
+      <div class="metrics">
+        <h3 class="title">
+          1. Key Financial Metrics:
+        </h3>
+        <table class="table-metrics">
+          <thead>
+            <th>Asset Price Close Adj</th>
+            <th>P/E Ratio L</th>
+            <th>Dividend Yield</th>
+            <th>Fair Value</th>
+            <th>P/E Ratio (Fwd) FY2024</th>
+            <th>P/E Ratio (Adjusted) L</th>
+            <th>Beta (5 year)</th>
+            <th>Next Earnings Date</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$191.29</td>
+              <td>29.22</td>
+              <td>0.52%</td>
+              <td>$165.35</td>
+              <td>28.83</td>
+              <td>29.22</td>
+              <td>1.26</td>
+              <td>2024-07-24</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="indicators">
+        <h3 class="title">2. Key Indicators:</h3>
+        <div class="body">
+          <div class="table-body">
+            <div class="table-indicators">
+              <div class="row">
+                <div>Asset Price Low Adj 52w</div>
+                <hr>
+                <div>163.85</div>
+              </div>
+              <div class="row">
+                <div>Asset Price High Adj 52w</div>
+                <hr>
+                <div>199.1</div>
+              </div>
+              <div class="row">
+                <div>EPS Actual FY2023</div>
+                <hr>
+                <div>6.13</div>
+              </div>
+              <div class="row">
+                <div>Dividend Yield</div>
+                <hr>
+                <div>0.52%</div>
+              </div>
+              <div class="row">
+                <div>Payout Ratio L</div>
+                <hr>
+                <div>15.08%</div>
+              </div>
+              <div class="row">
+                <div>Net Payout Yield L</div>
+                <hr>
+                <div>0.04</div>
+              </div>
+              <div class="row">
+                <div>Dividends Growth Streak</div>
+                <hr>
+                <div>12</div>
+              </div>
+            </div>
+          </div>
+          <div class="price-chart">
+            <div class="title">
+              <p>Price Changing</p>
+            </div>
+            <div class="chart">
+              <div class="chart-body">
+                <div class="chart-left">
+                  <div class="lines">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="chart-curve">
+                      <svg width="260" height="60" viewBox="0 0 260 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M0 58.9244L4.97376 59L9.94752 54.9453L14.9213 57.5336L19.895 53.6848L24.8688 49.9537L29.8426 43.6426L34.8163 49.9999L39.7901 48.1385L44.7638 51.7478L49.7376 46.6301L54.7114 44.3779L59.6851 42.6426L64.6589 42.9956L69.6326 40.6258L74.6064 37.2434L79.5802 36.2896L84.5539 35.1803L89.5277 30.5164L94.5014 33.882L99.4752 37.4577L104.449 38.8905L109.423 39.6972L114.396 37.5501L119.37 32.0836L124.344 31.8988L129.318 32.5332L134.321 40.6174L139.295 30.6929L144.269 27.3567L149.242 28.5206L154.216 25.0163L159.19 22.4196L164.164 23.9113L169.137 22.7012L174.111 22.7768L179.085 20.7263L184.059 17.6255L189.032 19.9616L194.006 16.9448L198.98 22.3272L203.954 14.9153L208.928 12.8439L213.901 13.9405L219.703 7.74418H223.476L228.278 1.22728L233.796 10.4753L238.77 7.74418L243.714 5.79878L248.883 2.94402L254.1 2.25383L259 1"
+                          stroke="#7FB7FF" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="vertical-line"></div>
+                  <div class="bottom-lines">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                  </div>
+                </div>
+                <div class="amount">
+                  <div>200.00</div>
+                  <div>190.00</div>
+                  <div>180.00</div>
+                  <div>170.00</div>
+                  <div>100.0m</div>
+                </div>
+              </div>
+              <div class="chart-month">
+                <div class="bottom-lines">
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="months">
+                  <div>Nov</div>
+                  <div>Dec</div>
+                  <div>Jan 24</div>
+                  <div>Feb</div>
+                  <div>Mar</div>
+                  <div>Apr</div>
+                  <div>May</div>
+                  <div>Jun</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ratings">
+        <h3 class="title">3. Raiting: </h3>
+        <div class="body">
+          <div class="body-left">
+            <table class="latest-targets-table">
+              <thead>
+                <tr>
+                  <th class="table-header" colspan="4">Latest Ratings</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Date</th>
+                  <th>Analyst</th>
+                  <th>Rating</th>
+                  <th>Target</th>
+                </tr>
+                <tr>
+                  <td>Feb 6, 2024</td>
+                  <td>Morgan Stanley</td>
+                  <td>Overweight</td>
+                  <td>$220.00</td>
+                </tr>
+                <tr>
+                  <td>Feb 12, 2024</td>
+                  <td>Evercore ISI</td>
+                  <td>Outperform</td>
+                  <td>$220.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="body-right">
+            <div class="current-ratings">
+              <div class="header-title">Current Ratings</div>
+              <div class="ratings-body">
+                <div class="high">
+                  <b>High</b> 275
+                </div>
+                <div class="median">
+                  <b>Median</b> 202.86
+                </div>
+                <div class="low">
+                  <b>Low</b> 125
+                </div>
+              </div>
+            </div>
+            <table class="analyst-table">
+              <thead>
+                <tr>
+                  <th class="table-header" colspan="7">Analyst Ratings</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Period Ending</th>
+                  <th>Average</th>
+                  <th>YoY Growth</th>
+                  <th>Forward P/E</th>
+                  <th>Low</th>
+                  <th>High</th>
+                  <th>No. of Analysts</th>
+                </tr>
+                <tr>
+                  <td>2024</td>
+                  <td>6.58</td>
+                  <td>7.4%</td>
+                  <td>29.1x</td>
+                  <td>6.46</td>
+                  <td>6.92</td>
+                  <td>44</td>
+                </tr>
+                <tr>
+                  <td>2025</td>
+                  <td>7.20</td>
+                  <td>9.4%</td>
+                  <td>26.6x</td>
+                  <td>6.40</td>
+                  <td>7.90</td>
+                  <td>46</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="page-number">
+      page <span class="number">1</span>/2
+    </div>
+  </div>
+  <div class="second-page">
+    <div class="page-body">
+      <div class="header">
+        <div class="header-top">
+          <div class="title">
+            Apple Inc.
+            <span class="sub-thin">NasdaqGS</span>
+          </div>
+          <div class="logo">
+            <img src="https://i.ibb.co/TH9twx7/inv-logo-proreport.png" alt="Investing.com Logo">
+          </div>
+        </div>
+        <div class="header-bottom">
+          <div class="report-title">
+            <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M4.94348 0.5C4.49825 0.5 3.75486 0.666557 3.05445 0.851175C2.42972 1.01826 1.80905 1.20003 1.19295 1.39633C1.01705 1.45151 0.86044 1.55518 0.74124 1.69534C0.622039 1.8355 0.545124 2.00642 0.519397 2.18832C0.134607 4.99571 1.02641 7.076 2.10959 8.45261C2.27757 8.66793 2.457 8.87367 2.64702 9.06899V2.79039H4.99732C5.33308 2.79039 5.65567 2.82301 5.96509 2.88826C6.2811 2.9535 6.5576 3.06442 6.79461 3.22102C7.03161 3.37109 7.21924 3.57661 7.3575 3.8376C7.50233 4.09207 7.57475 4.41178 7.57475 4.79673C7.57475 5.23389 7.49904 5.58622 7.34762 5.85374C7.1962 6.12125 6.99211 6.33004 6.73536 6.48011C6.4786 6.62365 6.17905 6.72152 5.83671 6.77372C5.50096 6.82592 5.14874 6.85202 4.78007 6.85202H3.8913V10.0971C4.0575 10.2032 4.23039 10.2988 4.40893 10.3831C4.59025 10.466 4.78365 10.5336 4.94348 10.5336C5.1033 10.5336 5.2967 10.466 5.47802 10.3831C5.71406 10.2715 5.94027 10.1404 6.15426 9.99109C6.76967 9.56199 7.31701 9.04339 7.77803 8.45261C8.85987 7.076 9.75235 4.99571 9.36755 2.18832C9.31585 1.81306 9.04858 1.50871 8.694 1.39633C8.07791 1.20002 7.45723 1.01825 6.83251 0.851175C6.13209 0.666557 5.38803 0.5 4.94348 0.5ZM5.19483 5.77544C5.00391 5.78849 4.81957 5.79501 4.64181 5.79501H3.8913V3.84739H4.78007C4.94465 3.84739 5.11582 3.85718 5.29358 3.87675C5.47133 3.89632 5.63263 3.942 5.77746 4.01377C5.9223 4.07902 6.0408 4.17689 6.13297 4.30738C6.22514 4.43135 6.27122 4.60099 6.27122 4.81631C6.27122 5.0512 6.21856 5.23389 6.11322 5.36438C6.01447 5.49488 5.8828 5.59275 5.71821 5.658C5.56021 5.72324 5.38575 5.76239 5.19483 5.77544Z"
+                fill="#FF7901" />
+            </svg>
+            <div class="text">Pro Report</div>
+          </div>
+          <div class="date">
+            <div class="clock">
+              <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="5.57146" cy="6.0714" r="4.28571" stroke="#5B616E" stroke-width="0.857143"
+                  stroke-linecap="round" />
+                <path d="M5.57141 3.92859V6.07145H7.71427" stroke="#5B616E" stroke-width="0.857143" />
+              </svg>
+            </div>
+            <div class="text">Date: Jun 06, 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="header-bottom-line"></div>
+      <div class="swot">
+        <h3 class="title">
+          4. SWOT Analysis:
+        </h3>
+        <div class="swot-top">
+          <div class="strength">
+            <div class="swot-name">Strengths</div>
+            <ul class="content">
+              <li>Strong brand recognition and premium product positioning.</li>
+              <li>Diverse product lineup with a loyal customer base.</li>
+              <li>Robust services segment with high margins and growth potential.</li>
+              <li>Significant global market share, especially in high-end smartphones.</li>
+            </ul>
+          </div>
+          <div class="weakness">
+            <div class="swot-name">Weaknesses</div>
+            <ul class="content">
+              <li>Intense competition, particularly in China from Huawei and Xiaomi.</li>
+              <li>Regulatory challenges that could impact key revenue streams.</li>
+              <li>Dependence on the iPhone product cycle and demand variability.</li>
+              <li>Potential market saturation in mature product segments.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="swot-bottom">
+          <div class="opportunity">
+            <div class="swot-name">Opportunities</div>
+            <ul class="content">
+              <li>Expansion into new product categories and services.</li>
+              <li>Growth in emerging markets.</li>
+              <li>Leveraging artificial intelligence and augmented reality technologies.</li>
+            </ul>
+          </div>
+          <div class="threat">
+            <div class="swot-name">Threats</div>
+            <ul class="content">
+              <li>Economic downturns impacting consumer spending.</li>
+              <li>Supply chain disruptions affecting production.</li>
+              <li>Adverse effects from Geopolitical tensions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="news">
+        <h3 class="title">5. News:</h3>
+        <div class="news-block">
+          <div class="block-left">
+            <div class="news-header">
+              Apple earnings beat by $0.03, revenue topped estimates
+            </div>
+            <div class="news-date">Date: May 05, 2024</div>
+            <div class="news-content">
+              Apple reported second quarter earnings per share (EPS) of $1.53, beating the analyst estimate of $1.50 by
+              $0.03. The company's revenue for the quarter was $90.8 billion, surpassing the consensus estimate of
+              $90.32 billion.
+            </div>
+          </div>
+          <div class="block-right">
+            <div class="news-header">
+              US stock futures bounce on Apple boost, nonfarm payrolls awaited
+            </div>
+            <div class="news-date">Date: May 05, 2024</div>
+            <div class="news-content">
+              US stock index futures rose in evening trading following better-than-expected earnings from Apple Inc. The
+              positive session on Wall Street was also driven by the Federal Reserve's announcement that interest rates
+              will remain higher for longer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-number">
+      page <span class="number">2</span>/2
+    </div>
+  </div>
+</body>
+
+</html>
